@@ -1,10 +1,10 @@
-SRC = src/main.cpp
+SRC = src/main.cpp src/PMergeMe.cpp
 OBJ = $(SRC:.cpp=.o)
 CXX = c++
 RM = rm -f
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = easyfind
+NAME = PMergeMe
 
 all: $(NAME)
 

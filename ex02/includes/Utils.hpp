@@ -16,12 +16,17 @@
 #define DEBUG_MODE 0 // Set to 1 to enable debug mode by default
 #endif
 
+#define FLOAT_ARRAY              "0123456789.f-"
+#define INT_ARRAY                "0123456789.-"
+#define DOUBLE_ARRAY             "0123456789.-"
+#define OUT_OF_BOUNDS            "Out of bounds"
+#define MIN_YEAR                 1900
+#define INVALID_ARGUMENTS        "Error: invalid arguments"
+
+
 ///Exceptions
-#define ILLEGAL_ADD             "[Span elements already full]       "
-#define SUCESS_ADD              "[Sucessfully added new element]    "
-#define SPAN_TOO_SMALL          "[The span is to small for that op] "
-#define SUCESS_SPAN             "[The span was successfully calc]   "
-#define SPAN_SIZE_ERROR         "[Span size is invalid]             "
+#define INVALID_OPERATOR_COUNT  "Error: Not enough operators were found in the argument!"
+#define DIVISION_BY_ZERO        "Error: int he argument you tried to divide by 0!"
 
 #if DEBUG_MODE == 1
 // Default Messages optimized
@@ -30,6 +35,7 @@
 #define COPY_CONSTRUCTOR        "[Copy Constructor called]          "
 #define DESTRUCTOR              "[Destructor called]                "
 #define ASSIGMENT_OPERATOR      "[Assigment Operator called]        "
+#define CANT_OPEN_FILE          "[Error: could not open file]       "
 #else
 // Define default messages when debug mode is disabled
 #define DEFAULT_CONSTRUCTOR     ""
@@ -37,6 +43,7 @@
 #define COPY_CONSTRUCTOR        ""
 #define DESTRUCTOR              ""
 #define ASSIGMENT_OPERATOR      ""
+#define CANT_OPEN_FILE          "[Error: could not open file]       "
 #endif
 
 #endif // COLORS_HPP
