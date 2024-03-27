@@ -22,7 +22,7 @@
 #define OUT_OF_BOUNDS            "Out of bounds"
 #define MIN_YEAR                 1900
 #define INVALID_ARGUMENTS        "Error: invalid arguments"
-
+#define ADJUSTABLE_TIME_DECI     5
 
 ///Exceptions
 #define INVALID_OPERATOR_COUNT  "Error: Not enough operators were found in the argument!"

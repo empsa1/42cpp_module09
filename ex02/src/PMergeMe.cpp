@@ -1,7 +1,6 @@
 #include "../includes/PmergeMe.hpp"
 
 //CONSTRUCTORS
-
 PmergeMe::PmergeMe()
 {
     
@@ -14,10 +13,13 @@ PmergeMe::~PmergeMe()
 
 //APLIED ALGORTIHM FOR VECTOR MERGE INSERT SORT
 void insertionSort(std::vector<int>& vec, int left, int right) {
-    for (int i = left + 1; i <= right; ++i) {
+    int i = left;
+    while (++i <= right)
+    {
         int key = vec[i];
         int j = i - 1;
-        while (j >= left && vec[j] > key) {
+        while (j >= left && vec[j] > key)
+        {
             vec[j + 1] = vec[j];
             --j;
         }
@@ -29,11 +31,15 @@ void merge(std::vector<int>& vec, int left, int middle, int right) {
     int n1 = middle - left + 1;
     int n2 = right - middle;
     std::vector<int> L, R;
-    for (int i = 0; i < n1; ++i)
+    int i = -1;
+    while (++i < n1)
         L.push_back(vec[left + i]);
-    for (int j = 0; j < n2; ++j)
+    int j = -1;
+    while (++j < n2)
         R.push_back(vec[middle + 1 + j]);
-    int i = 0, j = 0, k = left;
+    i = 0; 
+    j = 0;
+    int k = left;
     while (i < n1 && j < n2) {
         if (L[i] <= R[j])
             vec[k++] = L[i++];
@@ -61,12 +67,14 @@ void mergeInsertSort(std::vector<int>& vec, int left, int right) {
 
 //APLIED ALGORITHM FOR DEQUE MERGE INSERT SORT
 void insertionSort(std::deque<int>& dq, int left, int right) {
-    for (int i = left + 1; i <= right; ++i) {
+    int i = left;
+    while (++i <= right)
+    {
         int key = dq[i];
         int j = i - 1;
         while (j >= left && dq[j] > key) {
             dq[j + 1] = dq[j];
-            --j;
+            --j;    
         }
         dq[j + 1] = key;
     }
@@ -77,19 +85,21 @@ void merge(std::deque<int>& dq, int left, int middle, int right) {
     int n2 = right - middle;
 
     std::deque<int> L, R;
-    for (int i = 0; i < n1; ++i)
+    int i = -1;
+    while (++i < n1)
         L.push_back(dq[left + i]);
-    for (int j = 0; j < n2; ++j)
+    int j = -1;
+    while (++j < n2)
         R.push_back(dq[middle + 1 + j]);
-
-    int i = 0, j = 0, k = left;
+    i = 0;
+    j = 0;
+    int k = left;
     while (i < n1 && j < n2) {
         if (L[i] <= R[j])
             dq[k++] = L[i++];
         else
             dq[k++] = R[j++];
     }
-
     while (i < n1)
         dq[k++] = L[i++];
     while (j < n2)
@@ -149,10 +159,10 @@ void PmergeMe::fordJonhsonDeque(char** expression)
     printDeque();
     mergeInsertSort(deque, 0, deque.size() - 1);
     clock_t end = clock();
-    double sortTime = double(end - start) / CLOCKS_PER_SEC;
+    double sortTime = double(end - start) / CLOCKS_PER_SEC * 1e6;
     std::cout << GREEN << "After:    " << RESET;
     printDeque();
-    std::cout << CYAN << "Time to process a range of " << deque.size() << " with std::deque<int> STL container : " << std::fixed << std::setprecision(8) << sortTime << RESET << std::endl; 
+    std::cout << CYAN << "Time to process a range of " << deque.size() << " elements with std::deque<int> STL container : " << std::fixed << std::setprecision(ADJUSTABLE_TIME_DECI) << sortTime << " us" << RESET << std::endl; 
 }
 
 void PmergeMe::fordJonhsonVector(char** expression)
@@ -172,8 +182,8 @@ void PmergeMe::fordJonhsonVector(char** expression)
     printVector();
     mergeInsertSort(vector, 0, vector.size() - 1);
     clock_t end = clock();
-    double sortTime = double(end - start) / CLOCKS_PER_SEC;
+    double sortTime = double(end - start) / CLOCKS_PER_SEC * 1e6;
     std::cout << GREEN << "After:    " << RESET;
     printVector();
-    std::cout << CYAN << "Time to process a range of " << vector.size() << " with std::vector<int> STL container : " << std::fixed << std::setprecision(20) << sortTime << RESET << std::endl;
+    std::cout << CYAN << "Time to process a range of " << vector.size() << " elements with std::vector<int> STL container : " << std::fixed << std::setprecision(ADJUSTABLE_TIME_DECI) << sortTime << " us" << RESET << std::endl;
 }

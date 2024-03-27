@@ -28,7 +28,8 @@ class IllegallNumberException : public std::exception {
         }
 };
 
-class PmergeMe {
+class PmergeMe
+{
     private:
         std::vector<int>    vector;
         std::deque<int>     deque;
