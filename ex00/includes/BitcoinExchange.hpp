@@ -47,6 +47,8 @@ class BitcoinExchange
     public:
         BitcoinExchange(char *filename);
         ~BitcoinExchange();
+        BitcoinExchange(BitcoinExchange const &other);
+        BitcoinExchange &operator=(BitcoinExchange const &other);
         static int toInt(std::string &string);
         static double toDouble(std::string &string);
         static bool isDouble(const std::string &str);

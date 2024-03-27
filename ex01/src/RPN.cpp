@@ -1,5 +1,26 @@
 #include "../includes/RPN.hpp"
 
+RPN::RPN(RPN const &other)
+{
+    *this = other;
+}
+
+std::stack<int> RPN::getStack() const
+{
+    return this->stack;
+}
+
+RPN &RPN::operator=(RPN const &other)
+{
+    this->stack = std::stack<int>();
+    std::stack<int> tempStack = other.getStack();
+    while (!tempStack.empty()) {
+        this->stack.push(tempStack.top());
+        tempStack.pop();
+    }
+    return *this;
+}
+
 RPN::RPN(const std::string& expression)
 {
     int i = -1;

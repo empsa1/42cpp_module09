@@ -37,7 +37,10 @@ class RPN
         std::stack<int> stack;
         RPN();
     public:
+        std::stack<int> getStack() const;
         ~RPN();
+        RPN(RPN const &other);
+        RPN &operator=(RPN const &other);
         RPN(const std::string& expression);
 };
 

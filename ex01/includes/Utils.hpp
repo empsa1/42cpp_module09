@@ -17,7 +17,7 @@
 #endif
 
 #define FLOAT_ARRAY              "0123456789.f-"
-#define INT_ARRAY                "0123456789.-"
+#define INT_ARRAY                "0123456789"
 #define DOUBLE_ARRAY             "0123456789.-"
 #define OUT_OF_BOUNDS            "Out of bounds"
 #define MIN_YEAR                 1900

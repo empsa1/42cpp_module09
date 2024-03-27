@@ -1,5 +1,18 @@
-#include "../includes/PMergeMe.hpp"
+#include "../includes/PmergeMe.hpp"
 
+//CONSTRUCTORS
+
+PmergeMe::PmergeMe()
+{
+    
+}
+
+PmergeMe::~PmergeMe()
+{
+
+}
+
+//APLIED ALGORTIHM FOR VECTOR MERGE INSERT SORT
 void insertionSort(std::vector<int>& vec, int left, int right) {
     for (int i = left + 1; i <= right; ++i) {
         int key = vec[i];
@@ -15,13 +28,11 @@ void insertionSort(std::vector<int>& vec, int left, int right) {
 void merge(std::vector<int>& vec, int left, int middle, int right) {
     int n1 = middle - left + 1;
     int n2 = right - middle;
-
     std::vector<int> L, R;
     for (int i = 0; i < n1; ++i)
         L.push_back(vec[left + i]);
     for (int j = 0; j < n2; ++j)
         R.push_back(vec[middle + 1 + j]);
-
     int i = 0, j = 0, k = left;
     while (i < n1 && j < n2) {
         if (L[i] <= R[j])
@@ -29,7 +40,6 @@ void merge(std::vector<int>& vec, int left, int middle, int right) {
         else
             vec[k++] = R[j++];
     }
-
     while (i < n1)
         vec[k++] = L[i++];
     while (j < n2)
@@ -49,13 +59,7 @@ void mergeInsertSort(std::vector<int>& vec, int left, int right) {
     }
 }
 
-
-
-
-
-
-
-
+//APLIED ALGORITHM FOR DEQUE MERGE INSERT SORT
 void insertionSort(std::deque<int>& dq, int left, int right) {
     for (int i = left + 1; i <= right; ++i) {
         int key = dq[i];
@@ -105,57 +109,71 @@ void mergeInsertSort(std::deque<int>& dq, int left, int right) {
     }
 }
 
-void PMergeMe::fordJonhsonDeque(const std::string& expression)
+
+//UTILS FOR THE EXERCISE
+bool isInt(const std::string str)
 {
-    int i = -1;
-    while (expression[++i] != '\0')
-        deque.push_back(atoi(&expression[i]));
+    return (str.find_first_not_of(INT_ARRAY) == std::string::npos);
+}
 
-
-    std::cout << GREEN << "Before:   " << expression << RESET << std::endl;
-    clock_t start = clock();
-    mergeInsertSort(deque, 0, deque.size() - 1);
-    clock_t end = clock();
-
-
-    double sortTime = double(end - start) / CLOCKS_PER_SEC;
-    std::cout << GREEN << "After:    " << RESET;
+void PmergeMe::printDeque()
+{
     for (std::deque<int>::iterator it = deque.begin(); it != deque.end(); ++it)
         std::cout << GREEN << *it << " " << RESET;
     std::cout << std::endl;
-    std::cout << CYAN << "Time to process a range of " << deque.size() << " with std::deque<int> STL container : " << sortTime << RESET << std::endl;
-    
 }
 
-
-
-void PMergeMe::fordJonhsonVector(const std::string& expression)
+void    PmergeMe::printVector()
 {
-    int i = -1;
-    while (expression[++i] != '\0')
-        vector.push_back(atoi(&expression[i]));
-
-
-    std::cout << GREEN << "Before:   " << expression << RESET << std::endl;
-    clock_t start = clock();
-    mergeInsertSort(vector, 0, vector.size() - 1);
-    clock_t end = clock();
-
-
-    double sortTime = double(end - start) / CLOCKS_PER_SEC;
-    std::cout << GREEN << "After:    " << RESET;
     for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); ++it)
         std::cout << GREEN << *it << " " << RESET;
     std::cout << std::endl;
-    std::cout << CYAN << "Time to process a range of " << vector.size() << " with std::vector<int> STL container : " << sortTime << RESET << std::endl;
 }
 
-PMergeMe::PMergeMe()
+
+//CALLERS FOR THE DIFFERENT CONTAINERS
+void PmergeMe::fordJonhsonDeque(char** expression)
 {
-    
+    clock_t start = clock();
+    int i = 0;
+    while (expression[++i] != '\0')
+    {
+        if (isInt(std::string(expression[i])) == false)
+            throw IllegallNumberException();
+        int toAdd = atoi(expression[i]);
+        if (toAdd < 0)
+            throw IllegallNumberException();
+        deque.push_back(toAdd);
+    }
+    std::cout << GREEN << "Before:   " << RESET;
+    printDeque();
+    mergeInsertSort(deque, 0, deque.size() - 1);
+    clock_t end = clock();
+    double sortTime = double(end - start) / CLOCKS_PER_SEC;
+    std::cout << GREEN << "After:    " << RESET;
+    printDeque();
+    std::cout << CYAN << "Time to process a range of " << deque.size() << " with std::deque<int> STL container : " << std::fixed << std::setprecision(8) << sortTime << RESET << std::endl; 
 }
 
-PMergeMe::~PMergeMe()
+void PmergeMe::fordJonhsonVector(char** expression)
 {
-
+    clock_t start = clock();
+    int i = 0;
+    while (expression[++i] != '\0')
+    {
+        if (isInt(std::string(expression[i])) == false)
+            throw IllegallNumberException();
+        int toAdd = atoi(expression[i]);
+        if (toAdd < 0)
+            throw IllegallNumberException();
+        vector.push_back(toAdd);
+    }
+    std::cout << GREEN << "Before:   " << RESET;
+    printVector();
+    mergeInsertSort(vector, 0, vector.size() - 1);
+    clock_t end = clock();
+    double sortTime = double(end - start) / CLOCKS_PER_SEC;
+    std::cout << GREEN << "After:    " << RESET;
+    printVector();
+    std::cout << CYAN << "Time to process a range of " << vector.size() << " with std::vector<int> STL container : " << std::fixed << std::setprecision(20) << sortTime << RESET << std::endl;
 }

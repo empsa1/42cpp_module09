@@ -275,6 +275,18 @@ void find_exchange(const std::string& date, double value, const std::list<std::s
     }
 }
 
+BitcoinExchange::BitcoinExchange(BitcoinExchange const &other)
+{
+    *this = other;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &other)
+{
+    if (this != &other)
+        this->filename = other.filename;
+    return (*this);
+}
+
 BitcoinExchange::BitcoinExchange(char *filename) : filename(filename)
 {
     if (DEBUG_MODE == 1)

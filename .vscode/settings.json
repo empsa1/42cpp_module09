@@ -10,6 +10,8 @@
         "limits": "cpp",
         "cmath": "cpp",
         "cfloat": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "ctime": "cpp",
+        "iomanip": "cpp"
     }
 }
